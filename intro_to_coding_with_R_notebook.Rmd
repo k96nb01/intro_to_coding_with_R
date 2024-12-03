@@ -1,0 +1,17 @@
+---
+title: "Intro to coding with R"
+---
+
+This is an R Notebook. When you execute code within the notebook, the results appear beneath the code.
+
+Thinking of our R session as an empty factory, we first need to load some machines (functions). Run the code below (by pressing the green *play* arrow at the top right of the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*) to load the `tidyverse` library.
+
+```{r}
+library(tidyverse)
+```
+Above we should see an indication that the `tidyverse` package was loaded. This gives us lots of great functions to work with. Let's use one of these functions to import some data into our R factory. Run the code chunk below:
+
+```{r}
+read_csv("HLA_haplotypes.csv")
+```
+
