@@ -27,7 +27,7 @@ Above we should see an indication that the `tidyverse` package was loaded (the `
 read_csv("HLA_haplotypes.csv")
 ```
 
-We've just run our first line of code in R! To explain what we just did - we used a function (machine) called `read_csv`. Immediately after the name of the function (`read_csv`), we put in the arguments (settings) for the function. The arguments for this function were the name of the file we wanted to read ("HLA_haplotypes.csv"). The program we're using showed us the output of the function in the space above. The first thing it output was some information about what it did to read the function (click on the small box that says "R Console" above). The second thing it output (click on the box labeled "spec_tbl_df" above) is the imported data in a format called a tibble, a type of data frame. Take a moment to look at the data. Try clicking on the small right arrow at the top right of the data frame. What can you learn about this data frame?
+We've just run our first line of code in R! To explain what we just did - we used a function (machine) called `read_csv`. Immediately after the name of the function (`read_csv`), in parentheses, we put in the arguments (settings) for the function. The arguments for this function were simply the name of the file we wanted to read ("HLA_haplotypes.csv"). The program we're using showed us the output of the function below the code chunk. The first thing it output was some information about what it did to read the function (click on the small box that says "R Console" above). The second thing it output (click on the box labeled "spec_tbl_df" above) is the imported data in a format called a tibble, a type of data frame. Take a moment to look at the data. Try clicking on the small right arrow at the top right of the data frame. What can you learn about this data frame?
 
 
 
@@ -40,6 +40,8 @@ OK, so we've run our first function in R, which read an HLA haplotype table. How
 The output, above, should look exactly the same as in the first code chunk. However, we've set up our factory assembly line (often referred to as a pipeline, and since we're using a pipe, ` %>% ` we now know why!). Let's extend our assembly line by piping this to another function: `select`. Extend the pipeline by adding this to the end of the code: `%>% select()`
 
 ```{r}
+# Add `%>% select()` to the end of the code.
+
 "HLA_haplotypes.csv" %>% read_csv()
 ```
 
@@ -54,7 +56,7 @@ The help file for the function is really helpful! It tells us what the function 
 "HLA_haplotypes.csv" %>% read_csv() %>% select()
 ```
 
-Awesome, by setting the function up like this: `select(DRB1)`, we subsetted our data frame to only contain the DRB1 column! Our data pipline is starting to look like a sentence, but if we keep adding things at the end it could get hard to read. Luckily, we can put each function on a new line, which often makes things easier to read. Take a look at the code below, and try running it:
+Awesome, by setting the function up like this: `select(DRB1)`, we subsetted our data frame to only contain the DRB1 column! Our data pipeline is starting to look like a sentence, but if we keep adding things at the end it could get hard to read. Luckily, we can put each function on a new line, which often makes things easier to read. Take a look at the code below, and try running it:
 
 ```{r}
 "HLA_haplotypes.csv" %>% 
@@ -67,7 +69,7 @@ Now we have each function on a new line, which makes it easier to see what is ha
 Let's extend our pipeline with another function: `filter`. The `filter` function will keep any row in our data frame that meets the criteria we set up in the function's arguments. Let's try filtering for DRB1*11:01:01:01.
 
 ```{r}
-# Set up the arguments of the `filter` function so that we filter for "DRB1*11:01:01:01". Here's a hint: in R, saying something equals something else requires two equal signs (==), and make sure you put "DRB1*11:01:01:01" in quotes! 
+# Set up the arguments of the `filter` function so that we filter for "DRB1*11:01:01:01". Here's a hint: in R, saying something equals something else requires two equal signs (==), and make sure you put "DRB1*11:01:01:01" in quotes. Otherwise, you can also look up the help file for the `filter` function! 
 
 "HLA_haplotypes.csv" %>% 
   read_csv() %>% 
@@ -97,7 +99,7 @@ We can see that the `mutate` function created a new column, and in the arguments
 
 What did the `HLA_truncate` function do? If you have time, can you figure out how to have the function truncate to 3 fields instead of 2?
 
-OK, we've set up a nice pipeline, and we'd like to stop for now. The way we have the pipeline set up now, our data goes to the `mutate` function, but then stops there. Using our factory metaphor, our data is coming out of the last function and falling on the floor. Let's instead collect it in a bin. We do this in R by assigning it to an "object." To assign our data to an object we can use the assignment operator `<-`. You'll note that this looks like an arrow pointing the wrong way, and I admit, it is a bit jarring, but to assign something to an object, we have to put it at the very beginning of the pipeline, as so:
+OK, we've set up a nice pipeline, and we'd like to stop for now. The way we have the pipeline set up now, our data goes to the `mutate` function, but then stops there. Using our factory metaphor, our data is coming out of the last machine and falling on the floor. Let's instead collect it in a bin. We do this in R by assigning it to an "object." To assign our data to an object we can use the assignment operator `<-`. You'll note that this looks like an arrow pointing the wrong way, and I admit, it is a bit jarring, but to assign something to an object, we have to put it at the very beginning of the pipeline, as so:
 
 ```{r}
 # The code below adds `HLA_object <-` at the beginning. Run the code chunk to see what happens.
@@ -115,7 +117,7 @@ Wait, where did our data go? All we see now is the information about the `read_c
 print(HLA_object)
 ```
 
-Having an object in R is really useful. We can use it in anything else in R, even inside of functions, or use it at the start of another pipeline. Let's say we're done for now, though, and instead export the data. In the code below we'll send our object to the `write_csv` function to save a file with our data:
+Having an object in R is really useful. We can use it in anything else in R, even inside of functions, or use it at the start of another pipeline. Let's say we're done for now, though, and instead want to export the data. In the code below we'll send our object to the `write_csv` function to save a file with our data:
 
 ```{r}
 HLA_object %>% write_csv("HLA_object.csv")
@@ -123,4 +125,4 @@ HLA_object %>% write_csv("HLA_object.csv")
 
 You should see that you have a file called "HLA_object.csv" in your Files pane to the right.
 
-And there you go, you've performed a full set of data manipulation on some HLA data. Using our factory metaphor, we've trucked some data in our R factory, set up several machines linked by a track, collected the results in a bin, and then shipped our finished data out. Understanding and using these base principles, you can do really some really interesting informatics work in HLA!
+And there you go, you've performed a full set of data manipulation on some HLA data. Using our factory metaphor, we've trucked some data in our R factory, set up several machines linked by a track, collected the results in a bin, and then shipped our finished data out. Understanding and using these base principles, you can do some really interesting informatics work in HLA!
