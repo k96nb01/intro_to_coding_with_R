@@ -15,3 +15,41 @@ Above we should see an indication that the `tidyverse` package was loaded. This 
 read_csv("HLA_haplotypes.csv")
 ```
 
+We've just run our first line of code in R! To explain what we just did - we used a machine (function) called `read_csv`. Immediately after the name of the function (`read_csv`), we put in the settings for the function (the arguments). The arguments for this function were the name of the file we wanted to read ("HLA_haplotypes.csv"). The program we're using showed us the output of the function in the space above. The first thing it output was some information about what it did to read the function (click on the small box that says "R Console" above). The second thing it output (click on the box labeled "spec_tbl_df" above) is the imported data in a format called a tibble, a type of data frame. Take a moment to look at the data. Try clicking on the small right arrow at the top right of the data frame. What can you learn about this data frame?
+
+
+
+OK, so we've run our first function in R, which read an HLA haplotype table. However, what we did was essentially drop the data into the middle of the machine. We want to set up an assembly line for our data, though, so let's instead feed our data into the `read_csv` function using what's known as a "pipe." This piece of code: ` %>% ` is known as a pipe, and it functions like a track in a factory. Let's try running the code again, this time using the pipe:
+
+```{r}
+"HLA_haplotypes.csv" %>% read_csv()
+```
+
+The output, above, should look exactly the same as in the first code chunk. However, we've set up our factory assembly line (often referred to as a pipeline, and since we're using a pipe, ` %>% ` we now know why!). Let's extend our assembly line by piping this to another function: `select`. Extend the pipeline by adding this to the end of the code: `%>% select()`
+
+```{r}
+"HLA_haplotypes.csv" %>% read_csv()
+```
+
+Uh-oh, what happened to our data? It looks like we now have an empty data frame. Perhaps we didn't understand how to use the function, and which arguments to give the function. Let's see if we can learn a bit about the function by bringing up it's help file. The easiest way to do this is to type "?" and then the function into the console, at the bottom left, all the way in the bottom left of the browser window, where you see ">". Go ahead and type this into the console "?select()".
+
+
+The help file for the function is really helpful! It tells us what the function does, how to use the functions, and even gives lots of examples of how to use the function. It looks like this function will take the data frame and select the columns we want. Let's try giving an argument to the function so that just the DRB1 column is selected. Let us know if you need help figuring out how to do this.
+
+```{r}
+# Add an argument to this function to select the DRB1 locus:
+
+"HLA_haplotypes.csv" %>% read_csv() %>% select()
+```
+
+Awesome, by setting the function up like this: `select(DRB1)`, we subsetted our data frame to only contain the DRB1 column! Let's select all the DR~DQ haplotype columns and extend our pipeline with another function: `filter`. The `filter` function will keep any row in our data frame that meets the criteria we set up in the function's arguments. Let's try filtering for DRB1*11:01:01:01.
+
+```{r}
+# Set up the arguments of the `filter` function so that we filter for "DRB1*11:01:01:01". Here's a hint: in R, saying something equals something else requires two equal signs (==), and make sure you put "DRB1*11:01:01:01" in quotes! 
+
+"HLA_haplotypes.csv" %>% read_csv() %>% select(DRB345:DQB1) %>% filter()
+```
+
+
+
+
