@@ -95,4 +95,32 @@ We can see that the `mutate` function created a new column, and in the arguments
   mutate(DRB1_truncated = HLA_truncate(DRB1))
 ```
 
+What did the `HLA_truncate` function do? If you have time, can you figure out how to have the function truncate to 3 fields instead of 2?
 
+OK, we've set up a nice pipeline, and we'd like to stop for now. The way we have the pipeline set up now, our data goes to the `mutate` function, but then stops there. Using our factory metaphor, our data is coming out of the last function and falling on the floor. Let's instead collect it in a bin. We do this in R by assigning it to an "object." To assign our data to an object we can use the assignment operator `<-`. You'll note that this looks like an arrow pointing the wrong way, and I admit, it is a bit jarring, but to assign something to an object, we have to put it at the very beginning of the pipeline, as so:
+
+```{r}
+# The code below adds `HLA_object <-` at the beginning. Run the code chunk to see what happens.
+
+HLA_object <- "HLA_haplotypes.csv" %>% 
+  read_csv() %>% 
+  select(DRB1) %>% 
+  filter(DRB1 == "DRB1*11:01:01:01") %>% 
+  mutate(DRB1_truncated = HLA_truncate(DRB1))
+```
+
+Wait, where did our data go? All we see now is the information about the `read_csv` function! What happened is that in all the code we ran above, since we were never assigning our output to anything, it showed us the results just to prove that it did something. Now that we've assigned it to an object we created called `HLA_object`, we've told R to do something, and so it doesn't show us what's in the data we created. If we want to see what's in our object, we can use the `print` function (note that in computer coding, `print` should be though of as "show me", rather than "print this out on paper"). Run the code below to look at the data we created.
+
+```{r}
+print(HLA_object)
+```
+
+Having an object in R is really useful. We can use it in anything else in R, even inside of functions, or use it at the start of another pipeline. Let's say we're done for now, though, and instead export the data. In the code below we'll send our object to the `write_csv` function to save a file with our data:
+
+```{r}
+HLA_object %>% write_csv("HLA_object.csv")
+```
+
+You should see that you have a file called "HLA_object.csv" in your Files pane to the right.
+
+And there you go, you've performed a full set of data manipulation on some HLA data. Using our factory metaphor, we've trucked some data in our R factory, set up several machines linked by a track, collected the results in a bin, and then shipped our finished data out. Understanding and using these base principles, you can do really some really interesting informatics work in HLA!
