@@ -4,18 +4,7 @@ title: "Intro to coding with R"
 
 This is an R Notebook. When you execute code within the notebook, the results appear beneath the code.
 
-Thinking of our R session as an empty factory, we first need to get some machines (functions). We'll install two packages, also called libraries, of functions that will be useful to us. Run the code below (by pressing the green *play* arrow at the top right of the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*) to install the `tidyverse` and `immunogenetr` libraries.
-
-```{r}
-install.packages("tidyverse")
-install.packages("devtools")
-
-library(devtools)
-
-install_github("k96nb01/immunogenetr_package")
-```
-
-Great, we have our packages of useful functions installed. There's one more step before we can use them - we have to "load" them into our R factory. Run the code chunk below to load the `tidyverse` and `immunogenetr` packages.
+Thinking of our R session as an empty factory, we first need to get some machines (functions). We'll load two packages, also called libraries, of functions that will be useful to us. Run the code below (by pressing the green *play* arrow at the top right of the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*) to load the `tidyverse` and `immunogenetr` libraries.
 
 ```{r}
 library(tidyverse)
