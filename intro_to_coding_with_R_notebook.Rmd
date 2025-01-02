@@ -20,7 +20,7 @@ We've just run our first line of code in R! To explain what we just did - we use
 
 
 
-OK, so we've run our first function in R, which read an HLA haplotype table. However, what we did was essentially drop the data into the middle of the machine. We want to set up an assembly line for our data, though, so let's instead feed our data into the `read_csv` function using what's known as a "pipe." This piece of code: ` %>% ` is known as a pipe, and it functions like a track in a factory. Let's try running the code again, this time using the pipe:
+OK, so we've run our first function in R, which read an HLA haplotype table. However, what we did was essentially drop the data into the middle of the machine. We want to set up an assembly line for our data, though, so let's instead feed our data into the `read_csv` function using what's known as a "pipe." This piece of code: ` %>% ` is known as a pipe, and it functions like a conveyor belt in a factory. Let's try running the code again, this time using the pipe:
 
 ```{r}
 "HLA_haplotypes.csv" %>% read_csv()
@@ -34,7 +34,7 @@ The output, above, should look exactly the same as in the first code chunk. Howe
 "HLA_haplotypes.csv" %>% read_csv()
 ```
 
-Uh-oh, what happened to our data? It looks like we now have an empty data frame. Perhaps we didn't understand how to use the function, and which arguments to give the function. Let's see if we can learn a bit about the function by bringing up it's help file. The easiest way to do this is to type "?" and then the function into the console,  all the way in the bottom left of the browser window, where you see ">". Go ahead and type this into the console "?select()".
+Uh-oh, what happened to our data? It looks like we now have an empty data frame. Perhaps we didn't understand how to use the function, and which arguments to give the function. Let's see if we can learn a bit about the function by bringing up it's help file. The easiest way to do this is to type "?" and then the function name into the console,  all the way in the bottom left of the browser window, where you see ">". Go ahead and type this into the console "?select()".
 
 
 The help file for the function is really helpful! It tells us what the function does, how to use the arguments, and even gives lots of examples of how to use the function. It looks like this function will take the data frame and select the columns we want. Let's try giving an argument to the function so that just the DRB1 column is selected. Let us know if you need help figuring out how to do this.
@@ -112,6 +112,6 @@ Having an object in R is really useful. We can use it in anything else in R, eve
 HLA_object %>% write_csv("HLA_object.csv")
 ```
 
-You should see that you have a file called "HLA_object.csv" in your Files pane to the right.
+You should see that you now have a file called "HLA_object.csv" in your Files pane to the right.
 
-And there you go, you've performed a full set of data manipulation on some HLA data. Using our factory metaphor, we've trucked some data in our R factory, set up several machines linked by a track, collected the results in a bin, and then shipped our finished data out. Understanding and using these base principles, you can do some really interesting informatics work in HLA!
+And there you go, you've performed a full set of data manipulation on some HLA data. Using our factory metaphor, we've trucked some data in our R factory, set up several machines linked by a conveyor belt, collected the results in a bin, and then shipped our finished data out. Understanding and using these base principles, you can do some really interesting informatics work in HLA!
